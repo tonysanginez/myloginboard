@@ -22,6 +22,13 @@ A='Active'
 
 I='Inactive'
 
+**Testing**
+
+If the implementation of the backend its correct use the next link on the explorer to test if everything its ok:
+
+https://localhost:8089/tasm/v1/health
+
+
 **Installation**
 
 1. Clone the repository
