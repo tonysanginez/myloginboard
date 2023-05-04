@@ -11,6 +11,7 @@ MyLoginBoard is a secure and customizable login and dashboard platform that prov
 * Built with Angular, Java and MySql
 
 **Information**
+
 The standard for this project that I used for the prefij of tables:
 SEC = Security
 
