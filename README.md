@@ -11,12 +11,15 @@ MyLoginBoard is a secure and customizable login and dashboard platform that prov
 Built with Angular, Java and MySql
 
 **Installation**
+
 1. Clone the repository
 2. Import the SQL database file
 3. Run the application on a web server
 
 **Contributing**
+
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
 **Author**
+
 Tony Sanginez M.
