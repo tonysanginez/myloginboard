@@ -2,8 +2,7 @@ package com.tasm.bo;
 
 import com.tasm.exceptions.BOException;
 import com.tasm.exceptions.UnauthorizedException;
-import com.tasm.security.UsuarioLogin;
-
+import com.tasm.security.UserLogin;
 public interface IAutenticacionBO {
 	
 	/**
@@ -14,7 +13,7 @@ public interface IAutenticacionBO {
 	 * @throws BOException
 	 * @throws UnauthorizedException
 	 */
-	public UsuarioLogin userLogin(String strUsuario, String strClave) throws BOException, UnauthorizedException;
+	public UserLogin userLogin(String strUsuario, String strClave) throws BOException, UnauthorizedException;
 	
 	 
 

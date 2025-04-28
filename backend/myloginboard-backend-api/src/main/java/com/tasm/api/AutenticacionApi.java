@@ -23,6 +23,7 @@ import com.tasm.exceptions.CustomExceptionHandler;
 import com.tasm.exceptions.UnauthorizedException;
 import com.tasm.security.SecurityUtil;
 import com.tasm.util.GenericUtil;
+import com.tasm.util.JWTUtil;
 import com.tasm.util.MensajesUtil;
 
 @RestController
@@ -44,7 +45,6 @@ public class AutenticacionApi {
 		try {
 			// UsuarioLogin objUsuarioLogin = (UsuarioLogin) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 			DBContextHolder.setCurrentDb(DBTypeEnum.DB_TRX_TASM);
-			
 			String[] arrCrendencialesAuth = SecurityUtil.obtenerBasicAuth(strAuthorization, AuthenticationScheme.BASIC.toString());
 			return new ResponseEntity<>(
 					new ResponseOk(MensajesUtil.getMensaje("tasm.response.ok", MensajesUtil.validateSupportedLocale(strLanguage)), 

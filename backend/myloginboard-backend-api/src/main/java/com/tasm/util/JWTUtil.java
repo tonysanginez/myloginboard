@@ -1,9 +1,11 @@
 package com.tasm.util;
 
+import java.util.Base64;
 import java.util.Date;
 import java.util.Objects;
 import java.security.Key;
 
+import javax.crypto.Cipher;
 import javax.crypto.spec.SecretKeySpec;
 import javax.xml.bind.DatatypeConverter;
 
@@ -42,7 +44,7 @@ public class JWTUtil {
 
 		long nowMillis = System.currentTimeMillis();
 		Date now = new Date(nowMillis);
-
+		
 		// Let's set the JWT Claims
 		JwtBuilder builder = Jwts.builder().setId("$J-0-I-t$-Prd-2022$")
 				   						   .setIssuedAt(now)

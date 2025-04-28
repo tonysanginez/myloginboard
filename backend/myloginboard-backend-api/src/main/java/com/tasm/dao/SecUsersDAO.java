@@ -11,16 +11,15 @@ import javax.persistence.Query;
 import org.springframework.stereotype.Service;
 
 import com.tasm.exceptions.BOException;
-import com.tasm.helper.FormatoEmailHelper;
-import com.tasm.model.gen.GenUsuarios;
+import com.tasm.model.sec.SecUsers;
 
 import lombok.NonNull;
 
 @Service
-public class GenUsuariosDAO extends BaseDAO<GenUsuarios, Long> {
+public class SecUsersDAO extends BaseDAO<SecUsers, Long> {
 	
-	protected GenUsuariosDAO() {
-		super(GenUsuarios.class);
+	protected SecUsersDAO() {
+		super(SecUsers.class);
 	}
 
 	@PersistenceContext
@@ -32,34 +31,34 @@ public class GenUsuariosDAO extends BaseDAO<GenUsuarios, Long> {
 	}
 
 	@Override
-	public void persist(GenUsuarios t) 
+	public void persist(SecUsers t) 
 	throws PersistenceException {
 		super.persist(t);
 	}
 
 	@Override
-	public void update(GenUsuarios t) 
+	public void update(SecUsers t) 
 	throws PersistenceException {
 		super.update(t);
 	}
 
 	@Override
-	public Optional<GenUsuarios> find(@NonNull Long id) {
+	public Optional<SecUsers> find(@NonNull Long id) {
 		return super.find(id);
 	}
 
-	public GenUsuarios validarUsuarioActivo(String strUsuario) 
+	public SecUsers validarUsuarioActivo(String strUsuario) 
 	throws BOException {
 		try {
 			StringBuilder stbQuery = new StringBuilder();
 			stbQuery.append("select u ");
-			stbQuery.append("  from GenUsuarios u ");
-			stbQuery.append(" where (u.codigoUsuario = :usuario or u.email = :usuario) ");
+			stbQuery.append("  from SecUsers u ");
+			stbQuery.append(" where u.username = :username ");
 			
 			Query query = em.createQuery(stbQuery.toString());
-			query.setParameter("usuario", FormatoEmailHelper.emailValido(strUsuario) ? strUsuario.toLowerCase() : strUsuario.toUpperCase());
+			query.setParameter("username", strUsuario);
 			
-			return (GenUsuarios) query.getSingleResult();
+			return (SecUsers) query.getSingleResult();
 			
 		} catch (NoResultException e) {
 			return null;

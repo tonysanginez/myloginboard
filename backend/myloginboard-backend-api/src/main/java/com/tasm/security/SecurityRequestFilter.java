@@ -37,7 +37,7 @@ public class SecurityRequestFilter extends OncePerRequestFilter {
 	throws ServletException, IOException {
 		try {
 			String[] arrServiciosSinSeguridad = { "/tasm/v1/health", "/tasm/v1/autenticacion/login", "/tasm/v1/usuario/verifica_cuenta" };
-			UsuarioLogin objUsuarioLogin = null;
+			UserLogin objUsuarioLogin = null;
 			if (!(request.getRequestURI() != null && Arrays.stream(arrServiciosSinSeguridad).anyMatch(StringUtils.upperCase(request.getRequestURI())::equalsIgnoreCase))) {
 
 				String strAutorization = request.getHeader(HttpHeaders.AUTHORIZATION);
@@ -61,13 +61,11 @@ public class SecurityRequestFilter extends OncePerRequestFilter {
 						throw new UnauthorizedException("tasm.error.tokenIncorrectoOExpiradoAuth");
 					}
 				}
-				UsuarioLogin dataLogin = JWTUtil.obtenerDataToken(strToken, UsuarioLogin.class);
-				objUsuarioLogin = UsuarioLogin.builder()
+				UserLogin dataLogin = JWTUtil.obtenerDataToken(strToken, UserLogin.class);
+				objUsuarioLogin = UserLogin.builder()
 						.idToken(strToken)
-						.secuenciaUsuario(dataLogin.getSecuenciaUsuario())
-						.codigoUsuario(dataLogin.getCodigoUsuario())
-						.email(dataLogin.getEmail())
-						.nombreUsuario(dataLogin.getNombreUsuario())
+						.idUser(dataLogin.getIdUser())
+						.username(dataLogin.getUsername())
 						.build();
 			}
 			

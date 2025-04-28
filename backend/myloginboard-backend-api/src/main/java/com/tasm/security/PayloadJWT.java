@@ -13,9 +13,7 @@ import lombok.NoArgsConstructor;
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class PayloadJWT {
 	
-	private Long secuenciaUsuario;
-	private String codigoUsuario;
-	private String email;
-	private String nombreUsuario;
+	private Long idUser;
+	private String username;
 	
 }

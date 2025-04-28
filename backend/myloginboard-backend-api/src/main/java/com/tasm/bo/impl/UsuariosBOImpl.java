@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.tasm.bo.IUsuariosBO;
 import com.tasm.dao.GenMenuOpcionesDAO;
-import com.tasm.dao.GenUsuariosDAO;
+import com.tasm.dao.SecUsersDAO;
 import com.tasm.dao.GenUsuariosXSucursalDAO;
 import com.tasm.dto.OpcionesMenuDTO;
 import com.tasm.dto.OrganizacionesDTO;
@@ -15,6 +15,7 @@ import com.tasm.dto.SucursalesAccesoUsuarioDTO;
 import com.tasm.dto.VerificacionCuentaDTO;
 import com.tasm.exceptions.BOException;
 import com.tasm.model.gen.GenUsuarios;
+import com.tasm.model.sec.SecUsers;
 import com.tasm.util.GenericUtil; 
 
 @Service
@@ -26,7 +27,7 @@ public class UsuariosBOImpl implements IUsuariosBO {
 	@Autowired
 	private GenUsuariosXSucursalDAO objGenUsuariosXSucursalDAO; 
 	@Autowired
-	private GenUsuariosDAO objGenUsuariosDAO;
+	private SecUsersDAO objSecUsersDAO;
 	
 	@Override
 	public List<OpcionesMenuDTO> consultarOpcionesMenuAccesoUsuario(
@@ -60,16 +61,16 @@ public class UsuariosBOImpl implements IUsuariosBO {
 		GenericUtil.validarCampoRequeridoBO(strUsuario, "tasm.campos.usuario");
 		
 		VerificacionCuentaDTO objVerifCuenta = new VerificacionCuentaDTO();
-		GenUsuarios objUsuario = objGenUsuariosDAO.validarUsuarioActivo(strUsuario);
+		SecUsers objUsuario = objSecUsersDAO.validarUsuarioActivo(strUsuario);
 
  		if (objUsuario == null) {
 			throw new BOException("tasm.warn.usuarioNoExiste");
-		} else if (!objUsuario.isEstado()) {
+		} else if (!objUsuario.isStatus()) {
 			throw new BOException("tasm.warn.cuentaInactiva");
 		}
  		objVerifCuenta.setCuentaActiva(true);
 		objVerifCuenta.setTipoAcceso(null);
-		objVerifCuenta.setPrimerNombre(objUsuario.getPrimerNombre());
+		objVerifCuenta.setPrimerNombre(objUsuario.getUsername());
 		 
  		return objVerifCuenta;
 	}

@@ -31,6 +31,7 @@ public class SecurityUtil {
 		if (strTipoAuth == AuthenticationScheme.BASIC.toString()) {
 			try {
 				String base64Credentials = strAuthorization.substring(AuthenticationScheme.BASIC.toString().length()).trim();
+				
 				String credentials = new String(Base64.decode(base64Credentials.getBytes()), Charset.forName("UTF-8"));
 				values = credentials.split(":", 2);
 				if (values.length == 2) {

@@ -11,12 +11,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-public class UsuarioLogin {
-	
+public class UserLogin {
 	private String idToken;
-	private Long secuenciaUsuario;
-	private String codigoUsuario;
-	private String email;
-	private String nombreUsuario;
-	
+	private Long idUser;
+	private String username;
 }
